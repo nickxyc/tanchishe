@@ -54,10 +54,12 @@ void snake::snake_move_by_fo()
 {
 	int move_x = 0;
 	int move_y = 0;
+	/*
 	int temp_x_p = 0;
 	int temp_y_p = 0;
 	int temp_x_s = 0;
 	int temp_y_s = 0;
+*/
 	switch (head.get_foward())
 	{
 	case snake_head::UP:
@@ -79,7 +81,15 @@ void snake::snake_move_by_fo()
 	default:
 		break;
 	}
-	/*等待编辑从后方到前方改变蛇的坐标，最后改变蛇头*/// 2020 2 22 6:54pm
+	for (int i = lenght - 2; i > 0; i--)
+	{
+		nail[i].change_pox(nail[i - 1].get_PosX(), nail[i - 1].get_PosY());
+	}
+	nail[0].change_pox(head.get_PosX(), head.get_PosY());
+	head.change_pox(head.get_PosX() + move_x, head.get_PosY() + move_y);
+	// 功能失效，废弃于2020 2 22 10 37 pm bug 已修复
+	/*
+	/*等待编辑从后方到前方改变蛇的坐标，最后改变蛇头 2020 2 22 6:54pm
 	temp_x_p = head.get_PosX();
 	temp_y_p = head.get_PosY();
 	head.change_pox(head.get_PosX() + move_x, head.get_PosY() + move_y);
@@ -92,7 +102,11 @@ void snake::snake_move_by_fo()
 		temp_x_p = temp_x_s;
 		temp_y_p = temp_x_s;
 	}
-
+	*/
+}
+short snake::get_head_foward()const
+{
+	return head.get_foward();
 }
 //蛇头构造函数，将x，y参数传给父类node，fo传给foward变量
 snake_head::snake_head(short fo,int x,int y):snake_node(x,y),foward(fo)

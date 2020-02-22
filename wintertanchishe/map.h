@@ -4,10 +4,9 @@
 #include "snake.h"
 #include "food.h"
 #include "global_config.h"
-#include <vector>
-#include <algorithm>
 class map
-{
+{public:
+	static const DEATH_T DEATH = 0
 public:
 	map();
 	~map();	
@@ -20,6 +19,8 @@ private:
 	void print_snake_to_map();			//把蛇打印到地图上
 	void release_snake_to_map();			//将过去的蛇从地图上删除
 	//food f;
+	short death_jugement();
+
 };
 #endif // !
 

@@ -65,6 +65,33 @@ void map::release_snake_to_map()
 		map_[snake_body_pos.second][snake_body_pos.first] = ' ';
 	}
 }
+//对蛇头下一位置的判断，判断蛇的死亡
+short map::death_jugement()
+{
+	short next_x;
+	short next_y;
+	switch (e.get_head_foward())
+	{
+	case snake_head::UP:
+		next_x = 0;
+		next_y = -1;
+		break;
+	case snake_head::DOWN:
+		next_x = 0;
+		next_y = 1;
+		break;
+	case snake_head::LEFT:
+		next_x = -1;
+		next_y = 0;
+		break;
+	case snake_head::RIGHT:
+		next_x = 1;
+		next_y = 0;
+		break;
+	default:
+		break;
+	}
+}
 //析构函数
 map::~map()
 {

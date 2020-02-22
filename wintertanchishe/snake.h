@@ -41,7 +41,8 @@ public:
 	int get_snake_size()const { return lenght; }			//返回蛇的长度;
 	std::pair<int, int> get_head_pos()const;		//返回蛇头的位置
 	std::pair<int, int> get_nail_pos(int x)const;		//返回第几段蛇尾位置
-	void move();
+	void move();													//蛇移动的相关方法
+	short get_head_foward()const;						//返回蛇头的方向
 private:
 	snake_head head;			//头
 	snake_node nail[SNAKE_SIZE];//尾巴
