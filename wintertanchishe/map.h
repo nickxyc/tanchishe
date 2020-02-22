@@ -18,6 +18,7 @@ private:
 	char map_[MAX_SIZE_Y][MAX_SIZE_X];
 	snake e;
 	void print_snake_to_map();			//把蛇打印到地图上
+	void release_snake_to_map();			//将过去的蛇从地图上删除
 	//food f;
 };
 #endif // !

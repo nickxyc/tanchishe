@@ -1,6 +1,7 @@
 #include "map.h"
 //初始化生成地图
 #include <iostream>
+/*初始化地图类，设置地图大小以及，地图边框和空白区域*/
 map::map():x_(MAX_SIZE_X),y_(MAX_SIZE_Y)
 {
 	for (int i = 0; i < y_; i++)
@@ -24,6 +25,8 @@ map::map():x_(MAX_SIZE_X),y_(MAX_SIZE_Y)
 //将地图打印出来
 void map::show()
 {
+	release_snake_to_map();
+	e.move();
 	print_snake_to_map();
 
 	/*展示全部*/
@@ -44,6 +47,23 @@ void map::print_snake_to_map()
 {
 	std::pair<int, int> snake_head_pos = e.get_head_pos();
 	map_[snake_head_pos.second][snake_head_pos.first] = '@';		//修改地图为蛇头
+	/*根据蛇的尾巴长度循环蛇数组得到各节尾巴的位置并将打印在map上*/
+	for (int i = 0; i < e.get_snake_size()-1; i++)									
+	{
+		std::pair<int, int> snake_body_pos = e.get_nail_pos(i);
+		map_[snake_body_pos.second][snake_body_pos.first] = '*';
+	}
+}
+void map::release_snake_to_map()
+{
+	std::pair<int, int> snake_head_pos = e.get_head_pos();
+	map_[snake_head_pos.second][snake_head_pos.first] = ' ';		//修改原来蛇头位置为空白
+	/*根据蛇的尾巴长度循环蛇数组得到各节尾巴的位置并将打印空白在map上*/
+	for (int i = 0; i < e.get_snake_size() - 1; i++)
+	{
+		std::pair<int, int> snake_body_pos = e.get_nail_pos(i);
+		map_[snake_body_pos.second][snake_body_pos.first] = ' ';
+	}
 }
 //析构函数
 map::~map()
