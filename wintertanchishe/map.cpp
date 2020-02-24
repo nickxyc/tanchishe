@@ -115,7 +115,7 @@ void map::death_jugement()
 }
 /*实现吃到食物的判断*/
 void map::eat_judgement()
-{
+{/*
 	short next_x = 0;
 	short next_y = 0;
 	switch (e->get_head_foward())
@@ -139,6 +139,7 @@ void map::eat_judgement()
 	default:
 		break;
 	}
+	*/
 	if ((e->get_head_pos().first == f->get_PosX()) && (e->get_head_pos().second == f->get_PosY()))
 	{
 		e->increase_snake_lenght();
