@@ -127,6 +127,10 @@ void snake::change_head_foward(const char * fo)
 		head.turn_foward(snake_head::RIGHT);
 	}
 }
+void snake::increase_snake_lenght()
+{
+	lenght++;
+}
 //蛇头构造函数，将x，y参数传给父类node，fo传给foward变量
 snake_head::snake_head(short fo,int x,int y):snake_node(x,y),foward(fo)
 {

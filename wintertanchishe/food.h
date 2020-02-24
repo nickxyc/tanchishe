@@ -1,13 +1,19 @@
 #pragma once
 #ifndef FOOD_H_
 #define FOOD_H_
-#include <random>
+#include<cstdlib>
+#include <ctime>
+#include "global_config.h"
 class food
 {
-	int _x, _y;
+public:
 	food();
-	void generate();
-	void destory();
 	~food();
+	void create_food();
+	int get_PosX()const;
+	int get_PosY()const;
+private:
+	int x_, y_;
 };
+
 #endif

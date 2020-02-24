@@ -13,7 +13,7 @@ int main()
 		delete m1;
 		return 0;
 	}
-	Sleep(100);
+	Sleep(300);
 	system("cls");
 	}
 }

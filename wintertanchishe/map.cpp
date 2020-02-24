@@ -6,6 +6,7 @@
 map::map():x_(MAX_SIZE_X),y_(MAX_SIZE_Y)
 {
 	e = new snake;
+	f = new food;
 	for (int i = 0; i < y_; i++)
 	{
 		for (int j = 0; j < x_; j++)
@@ -30,6 +31,7 @@ void map::start()
 	show();
 	snake_control();
 	snake_move();
+	draw_food();
 }
 //将地图打印出来
 void map::show()const
@@ -46,11 +48,15 @@ void map::show()const
 }
 void map::snake_move()
 {
-	
+	eat_judgement();
 	death_jugement();
 	release_snake_to_map();
 	e->move();
 	print_snake_to_map();
+}
+void map::draw_food()
+{
+	map_[f->get_PosY()][f->get_PosX()] = '&';
 }
 void map::print_snake_to_map()
 {
@@ -105,6 +111,38 @@ void map::death_jugement()
 	if ((map_[e->get_head_pos().first + next_x][e->get_head_pos().second + next_y] == '#') || (map_[e->get_head_pos().first + next_x][e->get_head_pos().second + next_y] == '*'))
 	{
 		turn_end_game();
+	}
+}
+/*实现吃到食物的判断*/
+void map::eat_judgement()
+{
+	short next_x = 0;
+	short next_y = 0;
+	switch (e->get_head_foward())
+	{
+	case snake_head::UP:
+		next_x = 0;
+		next_y = -1;
+		break;
+	case snake_head::DOWN:
+		next_x = 0;
+		next_y = 1;
+		break;
+	case snake_head::LEFT:
+		next_x = -1;
+		next_y = 0;
+		break;
+	case snake_head::RIGHT:
+		next_x = 1;
+		next_y = 0;
+		break;
+	default:
+		break;
+	}
+	if ((e->get_head_pos().first == f->get_PosX()) && (e->get_head_pos().second == f->get_PosY()))
+	{
+		e->increase_snake_lenght();
+		f->create_food();
 	}
 }
 bool map::endgame()
