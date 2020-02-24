@@ -108,6 +108,25 @@ short snake::get_head_foward()const
 {
 	return head.get_foward();
 }
+void snake::change_head_foward(const char * fo)
+{
+	if (fo == "UP")
+	{
+		head.turn_foward(snake_head::UP);
+	}
+	else if (fo == "DOWN")
+	{
+		head.turn_foward(snake_head::DOWN);
+	}
+	else if (fo == "LEFT")
+	{
+		head.turn_foward(snake_head::LEFT);
+	}
+	else if (fo == "RIGHT")
+	{
+		head.turn_foward(snake_head::RIGHT);
+	}
+}
 //蛇头构造函数，将x，y参数传给父类node，fo传给foward变量
 snake_head::snake_head(short fo,int x,int y):snake_node(x,y),foward(fo)
 {
